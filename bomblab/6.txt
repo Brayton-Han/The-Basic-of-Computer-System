@@ -1,0 +1,596 @@
+(gdb) stepi 10
+0x0000555555555841 in phase_6 ()
+(gdb) stepi
+0x0000555555555844 in phase_6 ()
+(gdb) x/d $rsp
+0x7fffffffdef0:	80
+(gdb) x/d $r13
+0x7fffffffdef0:	80
+(gdb) stepi
+0x0000555555555847 in phase_6 ()
+(gdb) stepi
+0x0000555555555cca in read_six_numbers ()
+(gdb) finish
+Run till exit from #0  0x0000555555555cca in read_six_numbers ()
+0x000055555555584c in phase_6 ()
+(gdb) stepi
+0x0000555555555852 in phase_6 ()
+(gdb) x/d $r14d
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x0000555555555855 in phase_6 ()
+(gdb) x/d $r12
+0x7fffffffdef0:	4
+(gdb) stepi
+0x000055555555587f in phase_6 ()
+(gdb) stepi
+0x0000555555555882 in phase_6 ()
+(gdb) x/d $rbp
+0x7fffffffdef0:	4
+(gdb) stepi
+0x0000555555555886 in phase_6 ()
+(gdb) x/d $eax
+0x4:	Cannot access memory at address 0x4
+(gdb) stepi
+0x0000555555555889 in phase_6 ()
+(gdb) x/d $eax
+0x3:	Cannot access memory at address 0x3
+(gdb) stepi
+0x000055555555588c in phase_6 ()
+(gdb) stepi
+0x000055555555588e in phase_6 ()
+(gdb) stepi
+0x0000555555555892 in phase_6 ()
+(gdb) x/d $r14d
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x0000555555555894 in phase_6 ()
+(gdb) stepi
+0x0000555555555897 in phase_6 ()
+(gdb) x/d $rbx
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x0000555555555867 in phase_6 ()
+(gdb) stepi
+0x000055555555586b in phase_6 ()
+(gdb) x/d $eax
+0x3:	Cannot access memory at address 0x3
+(gdb) stepi
+0x000055555555586e in phase_6 ()
+(gdb) stepi
+0x000055555555585e in phase_6 ()
+(gdb) stepi
+0x0000555555555862 in phase_6 ()
+(gdb) x/d $rbx
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x0000555555555865 in phase_6 ()
+(gdb) x/d $ebx
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x0000555555555867 in phase_6 ()
+(gdb) stepi
+0x000055555555586b in phase_6 ()
+(gdb) x/d $eax
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x000055555555586e in phase_6 ()
+(gdb) stepi
+0x000055555555585e in phase_6 ()
+(gdb) stepi 3
+0x0000555555555867 in phase_6 ()
+(gdb) stepi
+0x000055555555586b in phase_6 ()
+(gdb) x/d $eax
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x000055555555586e in phase_6 ()
+(gdb) x/d $rbp
+0x7fffffffdef0:	4
+(gdb) x/d $rbp+0x0
+0x7fffffffdef0:	4
+(gdb) stepi 3
+0x0000555555555865 in phase_6 ()
+(gdb) stepi
+0x0000555555555867 in phase_6 ()
+(gdb) stepi
+0x000055555555586b in phase_6 ()
+(gdb) x/d $eax
+0x6:	Cannot access memory at address 0x6
+(gdb) stepi 3
+0x0000555555555862 in phase_6 ()
+(gdb) stepi
+0x0000555555555865 in phase_6 ()
+(gdb) stepi 2
+0x000055555555586b in phase_6 ()
+(gdb) x/d #eax
+Invalid character '#' in expression.
+(gdb) x/d $eax
+0x5:	Cannot access memory at address 0x5
+(gdb) stepi
+0x000055555555586e in phase_6 ()
+(gdb) stepi
+0x000055555555585e in phase_6 ()
+(gdb) stepi
+0x0000555555555862 in phase_6 ()
+(gdb) stepi
+0x0000555555555865 in phase_6 ()
+(gdb) stepi
+0x0000555555555877 in phase_6 ()
+(gdb) disas phase_6
+Dump of assembler code for function phase_6:
+   0x0000555555555821 <+0>:	endbr64 
+   0x0000555555555825 <+4>:	push   %r14
+   0x0000555555555827 <+6>:	push   %r13
+   0x0000555555555829 <+8>:	push   %r12
+   0x000055555555582b <+10>:	push   %rbp
+   0x000055555555582c <+11>:	push   %rbx
+   0x000055555555582d <+12>:	sub    $0x60,%rsp
+   0x0000555555555831 <+16>:	mov    %fs:0x28,%rax
+   0x000055555555583a <+25>:	mov    %rax,0x58(%rsp)
+   0x000055555555583f <+30>:	xor    %eax,%eax
+   0x0000555555555841 <+32>:	mov    %rsp,%r13
+   0x0000555555555844 <+35>:	mov    %r13,%rsi
+   0x0000555555555847 <+38>:	callq  0x555555555cca <read_six_numbers>
+   0x000055555555584c <+43>:	mov    $0x1,%r14d
+   0x0000555555555852 <+49>:	mov    %rsp,%r12
+   0x0000555555555855 <+52>:	jmp    0x55555555587f <phase_6+94>
+   0x0000555555555857 <+54>:	callq  0x555555555c9e <explode_bomb>
+   0x000055555555585c <+59>:	jmp    0x55555555588e <phase_6+109>
+   0x000055555555585e <+61>:	add    $0x1,%rbx
+   0x0000555555555862 <+65>:	cmp    $0x5,%ebx
+   0x0000555555555865 <+68>:	jg     0x555555555877 <phase_6+86>
+   0x0000555555555867 <+70>:	mov    (%r12,%rbx,4),%eax
+   0x000055555555586b <+74>:	cmp    %eax,0x0(%rbp)
+   0x000055555555586e <+77>:	jne    0x55555555585e <phase_6+61>
+   0x0000555555555870 <+79>:	callq  0x555555555c9e <explode_bomb>
+   0x0000555555555875 <+84>:	jmp    0x55555555585e <phase_6+61>
+=> 0x0000555555555877 <+86>:	add    $0x1,%r14
+--Type <RET> for more, q to quit, c to continue without paging--<RET>
+   0x000055555555587b <+90>:	add    $0x4,%r13
+   0x000055555555587f <+94>:	mov    %r13,%rbp
+   0x0000555555555882 <+97>:	mov    0x0(%r13),%eax
+   0x0000555555555886 <+101>:	sub    $0x1,%eax
+   0x0000555555555889 <+104>:	cmp    $0x5,%eax
+   0x000055555555588c <+107>:	ja     0x555555555857 <phase_6+54>
+   0x000055555555588e <+109>:	cmp    $0x5,%r14d
+   0x0000555555555892 <+113>:	jg     0x555555555899 <phase_6+120>
+   0x0000555555555894 <+115>:	mov    %r14,%rbx
+   0x0000555555555897 <+118>:	jmp    0x555555555867 <phase_6+70>
+   0x0000555555555899 <+120>:	mov    $0x0,%esi
+   0x000055555555589e <+125>:	mov    (%rsp,%rsi,4),%ecx
+   0x00005555555558a1 <+128>:	mov    $0x1,%eax
+   0x00005555555558a6 <+133>:	lea    0x3983(%rip),%rdx        # 0x555555559230 <node1>
+   0x00005555555558ad <+140>:	cmp    $0x1,%ecx
+   0x00005555555558b0 <+143>:	jle    0x5555555558bd <phase_6+156>
+   0x00005555555558b2 <+145>:	mov    0x8(%rdx),%rdx
+   0x00005555555558b6 <+149>:	add    $0x1,%eax
+   0x00005555555558b9 <+152>:	cmp    %ecx,%eax
+   0x00005555555558bb <+154>:	jne    0x5555555558b2 <phase_6+145>
+   0x00005555555558bd <+156>:	mov    %rdx,0x20(%rsp,%rsi,8)
+   0x00005555555558c2 <+161>:	add    $0x1,%rsi
+   0x00005555555558c6 <+165>:	cmp    $0x6,%rsi
+   0x00005555555558ca <+169>:	jne    0x55555555589e <phase_6+125>
+   0x00005555555558cc <+171>:	mov    0x20(%rsp),%rbx
+   0x00005555555558d1 <+176>:	mov    0x28(%rsp),%rax
+   0x00005555555558d6 <+181>:	mov    %rax,0x8(%rbx)
+--Type <RET> for more, q to quit, c to continue without paging--q
+Quit
+(gdb) stepi
+0x000055555555587b in phase_6 ()
+(gdb) x/d $r14
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x000055555555587f in phase_6 ()
+(gdb) x/d $r13
+0x7fffffffdef4:	3
+(gdb) stepi
+0x0000555555555882 in phase_6 ()
+(gdb) x/d $rbp
+0x7fffffffdef4:	3
+(gdb) stepi
+0x0000555555555886 in phase_6 ()
+(gdb) x/d $eax
+0x3:	Cannot access memory at address 0x3
+(gdb) stepi
+0x0000555555555889 in phase_6 ()
+(gdb) stepi 2
+0x000055555555588e in phase_6 ()
+(gdb) stepi
+0x0000555555555892 in phase_6 ()
+(gdb) stepi
+0x0000555555555894 in phase_6 ()
+(gdb) stepi
+0x0000555555555897 in phase_6 ()
+(gdb) x/d $rbx
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x0000555555555867 in phase_6 ()
+(gdb) stepi
+0x000055555555586b in phase_6 ()
+(gdb) x/d $eax
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x000055555555586e in phase_6 ()
+(gdb) stepi
+0x000055555555585e in phase_6 ()
+(gdb) stepi
+0x0000555555555862 in phase_6 ()
+(gdb) stepi 10
+0x000055555555586e in phase_6 ()
+(gdb) stepi
+0x000055555555585e in phase_6 ()
+(gdb) stepi 10
+0x000055555555587b in phase_6 ()
+(gdb) stepi 10
+0x0000555555555867 in phase_6 ()
+(gdb) stepi 10
+0x0000555555555862 in phase_6 ()
+(gdb) stepi
+0x0000555555555865 in phase_6 ()
+(gdb) stepi
+0x0000555555555867 in phase_6 ()
+(gdb) stepi 10
+0x0000555555555886 in phase_6 ()
+(gdb) stepi
+0x0000555555555889 in phase_6 ()
+(gdb) x/d $eax
+0x0:	Cannot access memory at address 0x0
+(gdb) stepi 10
+0x0000555555555862 in phase_6 ()
+(gdb) stepi 10
+0x000055555555587f in phase_6 ()
+(gdb) stepi 3
+0x0000555555555889 in phase_6 ()
+(gdb) x/d $eax
+0x5:	Cannot access memory at address 0x5
+(gdb) stepi 10
+0x0000555555555862 in phase_6 ()
+(gdb) stepi
+0x0000555555555865 in phase_6 ()
+(gdb) stepi
+0x0000555555555877 in phase_6 ()
+(gdb) stepi 5
+0x0000555555555889 in phase_6 ()
+(gdb) x/d $eax
+0x4:	Cannot access memory at address 0x4
+(gdb) stepi
+0x000055555555588c in phase_6 ()
+(gdb) stepi 2
+0x0000555555555892 in phase_6 ()
+(gdb) stepi
+0x0000555555555899 in phase_6 ()
+(gdb) stei
+Undefined command: "stei".  Try "help".
+(gdb) stepi
+0x000055555555589e in phase_6 ()
+(gdb) x/d $esi
+0x0:	Cannot access memory at address 0x0
+(gdb) stepi
+0x00005555555558a1 in phase_6 ()
+(gdb) x/d $ecx
+0x4:	Cannot access memory at address 0x4
+(gdb) stepi
+0x00005555555558a6 in phase_6 ()
+(gdb) stepi
+0x00005555555558ad in phase_6 ()
+(gdb) x/d $rdx
+0x555555559230 <node1>:	164
+(gdb) x/d $rip+0x3983
+0x555555559230 <node1>:	164
+(gdb) x/s $rdx
+0x555555559230 <node1>:	"\244"
+(gdb) stepi
+0x00005555555558b0 in phase_6 ()
+(gdb) stepi
+0x00005555555558b2 in phase_6 ()
+(gdb) stepi
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559240 <node2>:	127
+(gdb) stepi
+0x00005555555558b9 in phase_6 ()
+(gdb) x/d $eax
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x00005555555558bb in phase_6 ()
+(gdb) stepi
+0x00005555555558b2 in phase_6 ()
+(gdb) stepi
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559250 <node3>:	-124
+(gdb) stepi
+0x00005555555558b9 in phase_6 ()
+(gdb) stepi
+0x00005555555558bb in phase_6 ()
+(gdb) stepi
+0x00005555555558b2 in phase_6 ()
+(gdb) stepi
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559260 <node4>:	-26
+(gdb) stepi
+0x00005555555558b9 in phase_6 ()
+(gdb) stepi
+0x00005555555558bb in phase_6 ()
+(gdb) stepi
+0x00005555555558bd in phase_6 ()
+(gdb) stepi
+0x00005555555558c2 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559260 <node4>:	-26
+(gdb) stepi
+0x00005555555558c6 in phase_6 ()
+(gdb) x/d $rsi
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x00005555555558ca in phase_6 ()
+(gdb) stepi
+0x000055555555589e in phase_6 ()
+(gdb) stepi
+0x00005555555558a1 in phase_6 ()
+(gdb) x/d $ecx
+0x3:	Cannot access memory at address 0x3
+(gdb) stepi
+0x00005555555558a6 in phase_6 ()
+(gdb) stepi
+0x00005555555558ad in phase_6 ()
+(gdb) x/d $rdx
+0x555555559230 <node1>:	-92
+(gdb) x/d $rip
+0x5555555558ad <phase_6+140>:	-125
+(gdb) stepi
+0x00005555555558b0 in phase_6 ()
+(gdb) stepi
+0x00005555555558b2 in phase_6 ()
+(gdb) stepi
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559240 <node2>:	127
+(gdb) stepi
+0x00005555555558b9 in phase_6 ()
+(gdb) stepi
+0x00005555555558bb in phase_6 ()
+(gdb) stepi
+0x00005555555558b2 in phase_6 ()
+(gdb) stepi
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559250 <node3>:	-124
+(gdb) stepi
+0x00005555555558b9 in phase_6 ()
+(gdb) stepi
+0x00005555555558bb in phase_6 ()
+(gdb) stepi
+0x00005555555558bd in phase_6 ()
+(gdb) x/d $rdx
+0x555555559250 <node3>:	-124
+(gdb) stepi
+0x00005555555558c2 in phase_6 ()
+(gdb) stepi
+0x00005555555558c6 in phase_6 ()
+(gdb) stepi
+0x00005555555558ca in phase_6 ()
+(gdb) stepi
+0x000055555555589e in phase_6 ()
+(gdb) stepi 3
+0x00005555555558ad in phase_6 ()
+(gdb) x/d $rdx
+0x555555559230 <node1>:	-92
+(gdb) stepi 3
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559240 <node2>:	127
+(gdb) stepi
+0x00005555555558b9 in phase_6 ()
+(gdb) stepi
+0x00005555555558bb in phase_6 ()
+(gdb) stepi
+0x00005555555558bd in phase_6 ()
+(gdb) x/d $rdx
+0x555555559240 <node2>:	127
+(gdb) stepi
+0x00005555555558c2 in phase_6 ()
+(gdb) stepi 2
+0x00005555555558ca in phase_6 ()
+(gdb) stepi
+0x000055555555589e in phase_6 ()
+(gdb) stepi 3
+0x00005555555558ad in phase_6 ()
+(gdb) x/d $rdx
+0x555555559230 <node1>:	-92
+(gdb) stepi
+0x00005555555558b0 in phase_6 ()
+(gdb) stepi
+0x00005555555558bd in phase_6 ()
+(gdb) stepi
+0x00005555555558c2 in phase_6 ()
+(gdb) stepi 2
+0x00005555555558ca in phase_6 ()
+(gdb) stepi
+0x000055555555589e in phase_6 ()
+(gdb) stepi
+0x00005555555558a1 in phase_6 ()
+(gdb) x/d $ecx
+0x6:	Cannot access memory at address 0x6
+(gdb) stepi 2
+0x00005555555558ad in phase_6 ()
+(gdb) stepi
+0x00005555555558b0 in phase_6 ()
+(gdb) stepi
+0x00005555555558b2 in phase_6 ()
+(gdb) strpi
+Undefined command: "strpi".  Try "help".
+(gdb) stepi
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559240 <node2>:	127
+(gdb) stepi
+0x00005555555558b9 in phase_6 ()
+(gdb) stepi 2
+0x00005555555558b2 in phase_6 ()
+(gdb) stepi
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559250 <node3>:	-124
+(gdb) stepi 4
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559260 <node4>:	-26
+(gdb) stepi
+0x00005555555558b9 in phase_6 ()
+(gdb) stepi 2
+0x00005555555558b2 in phase_6 ()
+(gdb) stepi
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $Rdx
+Value can't be converted to integer.
+(gdb) x/d $rdx
+0x555555559270 <node5>:	-28
+(gdb) stepi 4
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559110 <node6>:	-127
+(gdb) stepi
+0x00005555555558b9 in phase_6 ()
+(gdb) stepi
+0x00005555555558bb in phase_6 ()
+(gdb) stepi
+0x00005555555558bd in phase_6 ()
+(gdb) stepi 3
+0x00005555555558ca in phase_6 ()
+(gdb) stepi
+0x000055555555589e in phase_6 ()
+(gdb) stepi 3
+0x00005555555558ad in phase_6 ()
+(gdb) x/d $rdx
+0x555555559230 <node1>:	-92
+(gdb) stepi
+0x00005555555558b0 in phase_6 ()
+(gdb) stepi
+0x00005555555558b2 in phase_6 ()
+(gdb) stepi
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559240 <node2>:	127
+(gdb) stepi 4
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559250 <node3>:	-124
+(gdb) stepi 8
+0x00005555555558b6 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559270 <node5>:	-28
+(gdb) stepi 4
+0x00005555555558c2 in phase_6 ()
+(gdb) x/d $rdx
+0x555555559270 <node5>:	-28
+(gdb) stepi
+0x00005555555558c6 in phase_6 ()
+(gdb) stepi
+0x00005555555558ca in phase_6 ()
+(gdb) stepi
+0x00005555555558cc in phase_6 ()
+(gdb) stepi
+0x00005555555558d1 in phase_6 ()
+(gdb) x/d $rbx
+0x555555559260 <node4>:	-26
+(gdb) stepi
+0x00005555555558d6 in phase_6 ()
+(gdb) x/d $rax
+0x555555559250 <node3>:	-124
+(gdb) disas phase_6
+Dump of assembler code for function phase_6:
+   0x0000555555555821 <+0>:	endbr64 
+   0x0000555555555825 <+4>:	push   %r14
+   0x0000555555555827 <+6>:	push   %r13
+   0x0000555555555829 <+8>:	push   %r12
+   0x000055555555582b <+10>:	push   %rbp
+   0x000055555555582c <+11>:	push   %rbx
+   0x000055555555582d <+12>:	sub    $0x60,%rsp
+   0x0000555555555831 <+16>:	mov    %fs:0x28,%rax
+   0x000055555555583a <+25>:	mov    %rax,0x58(%rsp)
+   0x000055555555583f <+30>:	xor    %eax,%eax
+   0x0000555555555841 <+32>:	mov    %rsp,%r13
+   0x0000555555555844 <+35>:	mov    %r13,%rsi
+   0x0000555555555847 <+38>:	callq  0x555555555cca <read_six_numbers>
+   0x000055555555584c <+43>:	mov    $0x1,%r14d
+   0x0000555555555852 <+49>:	mov    %rsp,%r12
+   0x0000555555555855 <+52>:	jmp    0x55555555587f <phase_6+94>
+   0x0000555555555857 <+54>:	callq  0x555555555c9e <explode_bomb>
+   0x000055555555585c <+59>:	jmp    0x55555555588e <phase_6+109>
+   0x000055555555585e <+61>:	add    $0x1,%rbx
+   0x0000555555555862 <+65>:	cmp    $0x5,%ebx
+   0x0000555555555865 <+68>:	jg     0x555555555877 <phase_6+86>
+   0x0000555555555867 <+70>:	mov    (%r12,%rbx,4),%eax
+   0x000055555555586b <+74>:	cmp    %eax,0x0(%rbp)
+   0x000055555555586e <+77>:	jne    0x55555555585e <phase_6+61>
+   0x0000555555555870 <+79>:	callq  0x555555555c9e <explode_bomb>
+   0x0000555555555875 <+84>:	jmp    0x55555555585e <phase_6+61>
+   0x0000555555555877 <+86>:	add    $0x1,%r14
+--Type <RET> for more, q to quit, c to continue without paging--c
+   0x000055555555587b <+90>:	add    $0x4,%r13
+   0x000055555555587f <+94>:	mov    %r13,%rbp
+   0x0000555555555882 <+97>:	mov    0x0(%r13),%eax
+   0x0000555555555886 <+101>:	sub    $0x1,%eax
+   0x0000555555555889 <+104>:	cmp    $0x5,%eax
+   0x000055555555588c <+107>:	ja     0x555555555857 <phase_6+54>
+   0x000055555555588e <+109>:	cmp    $0x5,%r14d
+   0x0000555555555892 <+113>:	jg     0x555555555899 <phase_6+120>
+   0x0000555555555894 <+115>:	mov    %r14,%rbx
+   0x0000555555555897 <+118>:	jmp    0x555555555867 <phase_6+70>
+   0x0000555555555899 <+120>:	mov    $0x0,%esi
+   0x000055555555589e <+125>:	mov    (%rsp,%rsi,4),%ecx
+   0x00005555555558a1 <+128>:	mov    $0x1,%eax
+   0x00005555555558a6 <+133>:	lea    0x3983(%rip),%rdx        # 0x555555559230 <node1>
+   0x00005555555558ad <+140>:	cmp    $0x1,%ecx
+   0x00005555555558b0 <+143>:	jle    0x5555555558bd <phase_6+156>
+   0x00005555555558b2 <+145>:	mov    0x8(%rdx),%rdx
+   0x00005555555558b6 <+149>:	add    $0x1,%eax
+   0x00005555555558b9 <+152>:	cmp    %ecx,%eax
+   0x00005555555558bb <+154>:	jne    0x5555555558b2 <phase_6+145>
+   0x00005555555558bd <+156>:	mov    %rdx,0x20(%rsp,%rsi,8)
+   0x00005555555558c2 <+161>:	add    $0x1,%rsi
+   0x00005555555558c6 <+165>:	cmp    $0x6,%rsi
+   0x00005555555558ca <+169>:	jne    0x55555555589e <phase_6+125>
+   0x00005555555558cc <+171>:	mov    0x20(%rsp),%rbx
+   0x00005555555558d1 <+176>:	mov    0x28(%rsp),%rax
+=> 0x00005555555558d6 <+181>:	mov    %rax,0x8(%rbx)
+   0x00005555555558da <+185>:	mov    0x30(%rsp),%rdx
+   0x00005555555558df <+190>:	mov    %rdx,0x8(%rax)
+   0x00005555555558e3 <+194>:	mov    0x38(%rsp),%rax
+   0x00005555555558e8 <+199>:	mov    %rax,0x8(%rdx)
+   0x00005555555558ec <+203>:	mov    0x40(%rsp),%rdx
+   0x00005555555558f1 <+208>:	mov    %rdx,0x8(%rax)
+   0x00005555555558f5 <+212>:	mov    0x48(%rsp),%rax
+   0x00005555555558fa <+217>:	mov    %rax,0x8(%rdx)
+   0x00005555555558fe <+221>:	movq   $0x0,0x8(%rax)
+   0x0000555555555906 <+229>:	mov    $0x5,%ebp
+   0x000055555555590b <+234>:	jmp    0x555555555916 <phase_6+245>
+   0x000055555555590d <+236>:	mov    0x8(%rbx),%rbx
+   0x0000555555555911 <+240>:	sub    $0x1,%ebp
+   0x0000555555555914 <+243>:	je     0x555555555927 <phase_6+262>
+   0x0000555555555916 <+245>:	mov    0x8(%rbx),%rax
+   0x000055555555591a <+249>:	mov    (%rax),%eax
+   0x000055555555591c <+251>:	cmp    %eax,(%rbx)
+   0x000055555555591e <+253>:	jge    0x55555555590d <phase_6+236>
+   0x0000555555555920 <+255>:	callq  0x555555555c9e <explode_bomb>
+   0x0000555555555925 <+260>:	jmp    0x55555555590d <phase_6+236>
+   0x0000555555555927 <+262>:	mov    0x58(%rsp),%rax
+   0x000055555555592c <+267>:	xor    %fs:0x28,%rax
+   0x0000555555555935 <+276>:	jne    0x555555555944 <phase_6+291>
+   0x0000555555555937 <+278>:	add    $0x60,%rsp
+   0x000055555555593b <+282>:	pop    %rbx
+   0x000055555555593c <+283>:	pop    %rbp
+   0x000055555555593d <+284>:	pop    %r12
+   0x000055555555593f <+286>:	pop    %r13
+   0x0000555555555941 <+288>:	pop    %r14
+   0x0000555555555943 <+290>:	retq   
+   0x0000555555555944 <+291>:	callq  0x555555555220 <__stack_chk_fail@plt>
+End of assembler dump.
+(gdb) stepi
+0x00005555555558da in phase_6 ()
+(gdb) quit
+A debugging session is active.
+290

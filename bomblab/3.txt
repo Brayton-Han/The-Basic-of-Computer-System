@@ -1,0 +1,1403 @@
+Breakpoint 1, 0x0000555555555760 in phase_4 ()
+(gdb) disas phase_4
+Dump of assembler code for function phase_4:
+=> 0x0000555555555760 <+0>:	endbr64 
+   0x0000555555555764 <+4>:	sub    $0x18,%rsp
+   0x0000555555555768 <+8>:	mov    %fs:0x28,%rax
+   0x0000555555555771 <+17>:	mov    %rax,0x8(%rsp)
+   0x0000555555555776 <+22>:	xor    %eax,%eax
+   0x0000555555555778 <+24>:	mov    %rsp,%rcx
+   0x000055555555577b <+27>:	lea    0x4(%rsp),%rdx
+   0x0000555555555780 <+32>:	lea    0x1bc5(%rip),%rsi        # 0x55555555734c
+   0x0000555555555787 <+39>:	callq  0x5555555552c0 <__isoc99_sscanf@plt>
+   0x000055555555578c <+44>:	cmp    $0x2,%eax
+   0x000055555555578f <+47>:	jne    0x55555555579c <phase_4+60>
+   0x0000555555555791 <+49>:	mov    (%rsp),%eax
+   0x0000555555555794 <+52>:	sub    $0x2,%eax
+   0x0000555555555797 <+55>:	cmp    $0x2,%eax
+   0x000055555555579a <+58>:	jbe    0x5555555557a1 <phase_4+65>
+   0x000055555555579c <+60>:	callq  0x555555555c9e <explode_bomb>
+   0x00005555555557a1 <+65>:	mov    (%rsp),%esi
+   0x00005555555557a4 <+68>:	mov    $0x9,%edi
+   0x00005555555557a9 <+73>:	callq  0x555555555725 <func4>
+   0x00005555555557ae <+78>:	cmp    %eax,0x4(%rsp)
+   0x00005555555557b2 <+82>:	jne    0x5555555557c9 <phase_4+105>
+   0x00005555555557b4 <+84>:	mov    0x8(%rsp),%rax
+   0x00005555555557b9 <+89>:	xor    %fs:0x28,%rax
+   0x00005555555557c2 <+98>:	jne    0x5555555557d0 <phase_4+112>
+   0x00005555555557c4 <+100>:	add    $0x18,%rsp
+   0x00005555555557c8 <+104>:	retq   
+--Type <RET> for more, q to quit, c to continue without paging--<RET>
+   0x00005555555557c9 <+105>:	callq  0x555555555c9e <explode_bomb>
+   0x00005555555557ce <+110>:	jmp    0x5555555557b4 <phase_4+84>
+   0x00005555555557d0 <+112>:	callq  0x555555555220 <__stack_chk_fail@plt>
+End of assembler dump.
+(gdb) stepi 8
+0x0000555555555787 in phase_4 ()
+(gdb) x/s $rsi
+0x55555555734c:	"%d %d"
+(gdb) x/s $rdx
+0x7fffffffdf64:	""
+(gdb) x/d $rdx
+0x7fffffffdf64:	0
+(gdb) x/d $rcx
+0x7fffffffdf60:	0
+(gdb) disas func4
+Dump of assembler code for function func4:
+   0x0000555555555725 <+0>:	endbr64 
+   0x0000555555555729 <+4>:	mov    $0x0,%eax
+   0x000055555555572e <+9>:	test   %edi,%edi
+   0x0000555555555730 <+11>:	jle    0x55555555575f <func4+58>
+   0x0000555555555732 <+13>:	push   %r12
+   0x0000555555555734 <+15>:	push   %rbp
+   0x0000555555555735 <+16>:	push   %rbx
+   0x0000555555555736 <+17>:	mov    %edi,%ebx
+   0x0000555555555738 <+19>:	mov    %esi,%ebp
+   0x000055555555573a <+21>:	mov    %esi,%eax
+   0x000055555555573c <+23>:	cmp    $0x1,%edi
+   0x000055555555573f <+26>:	je     0x55555555575a <func4+53>
+   0x0000555555555741 <+28>:	lea    -0x1(%rdi),%edi
+   0x0000555555555744 <+31>:	callq  0x555555555725 <func4>
+   0x0000555555555749 <+36>:	lea    (%rax,%rbp,1),%r12d
+   0x000055555555574d <+40>:	lea    -0x2(%rbx),%edi
+   0x0000555555555750 <+43>:	mov    %ebp,%esi
+   0x0000555555555752 <+45>:	callq  0x555555555725 <func4>
+   0x0000555555555757 <+50>:	add    %r12d,%eax
+   0x000055555555575a <+53>:	pop    %rbx
+   0x000055555555575b <+54>:	pop    %rbp
+   0x000055555555575c <+55>:	pop    %r12
+   0x000055555555575e <+57>:	retq   
+   0x000055555555575f <+58>:	retq   
+End of assembler dump.
+(gdb) x/d $eax
+0x0:	Cannot access memory at address 0x0
+(gdb) x/d $rsp+0x8
+0x7fffffffdf68:	0
+(gdb) x/s $rsp+0x8
+0x7fffffffdf68:	""
+(gdb) stepi
+0x00005555555552c0 in __isoc99_sscanf@plt ()
+(gdb) stepi
+0x00005555555552c4 in __isoc99_sscanf@plt ()
+(gdb) stepi
+__GI___isoc99_sscanf (s=0x5555555597b0 <input_strings+240> "q", 
+    format=0x55555555734c "%d %d") at isoc99_sscanf.c:24
+24	isoc99_sscanf.c: 没有那个文件或目录.
+(gdb) finish
+Run till exit from #0  __GI___isoc99_sscanf (
+    s=0x5555555597b0 <input_strings+240> "q", format=0x55555555734c "%d %d")
+    at isoc99_sscanf.c:24
+0x000055555555578c in phase_4 ()
+Value returned is $1 = 0
+(gdb) stepi
+0x000055555555578f in phase_4 ()
+(gdb) x/d $eax
+0x0:	Cannot access memory at address 0x0
+(gdb) stepi
+0x000055555555579c in phase_4 ()
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 40129] will be killed.
+
+Quit anyway? (y or n) y
+brayton@brayton-VirtualBox:~/bomb28$ gdb
+GNU gdb (Ubuntu 9.1-0ubuntu1) 9.1
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+(gdb) file bomb
+Reading symbols from bomb...
+(gdb) b phase_4
+Breakpoint 1 at 0x1760
+(gdb) b explode_bomb
+Breakpoint 2 at 0x1c9e
+(gdb) run
+Starting program: /home/brayton/bomb28/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+^C
+Program received signal SIGINT, Interrupt.
+0x00007ffff7ed6142 in __GI___libc_read (fd=0, buf=0x55555555a6b0, nbytes=1024)
+    at ../sysdeps/unix/sysv/linux/read.c:26
+26	../sysdeps/unix/sysv/linux/read.c: 没有那个文件或目录.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/brayton/bomb28/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+For NASA, space is still a high priority.
+Phase 1 defused. How about the next one?
+0 1 1 2 3 5
+That's number 2.  Keep going!
+4 0
+Halfway there!
+2 9
+
+Breakpoint 1, 0x0000555555555760 in phase_4 ()
+(gdb) disas phase_4
+Dump of assembler code for function phase_4:
+=> 0x0000555555555760 <+0>:	endbr64 
+   0x0000555555555764 <+4>:	sub    $0x18,%rsp
+   0x0000555555555768 <+8>:	mov    %fs:0x28,%rax
+   0x0000555555555771 <+17>:	mov    %rax,0x8(%rsp)
+   0x0000555555555776 <+22>:	xor    %eax,%eax
+   0x0000555555555778 <+24>:	mov    %rsp,%rcx
+   0x000055555555577b <+27>:	lea    0x4(%rsp),%rdx
+   0x0000555555555780 <+32>:	lea    0x1bc5(%rip),%rsi        # 0x55555555734c
+   0x0000555555555787 <+39>:	callq  0x5555555552c0 <__isoc99_sscanf@plt>
+   0x000055555555578c <+44>:	cmp    $0x2,%eax
+   0x000055555555578f <+47>:	jne    0x55555555579c <phase_4+60>
+   0x0000555555555791 <+49>:	mov    (%rsp),%eax
+   0x0000555555555794 <+52>:	sub    $0x2,%eax
+   0x0000555555555797 <+55>:	cmp    $0x2,%eax
+   0x000055555555579a <+58>:	jbe    0x5555555557a1 <phase_4+65>
+   0x000055555555579c <+60>:	callq  0x555555555c9e <explode_bomb>
+   0x00005555555557a1 <+65>:	mov    (%rsp),%esi
+   0x00005555555557a4 <+68>:	mov    $0x9,%edi
+   0x00005555555557a9 <+73>:	callq  0x555555555725 <func4>
+   0x00005555555557ae <+78>:	cmp    %eax,0x4(%rsp)
+   0x00005555555557b2 <+82>:	jne    0x5555555557c9 <phase_4+105>
+   0x00005555555557b4 <+84>:	mov    0x8(%rsp),%rax
+   0x00005555555557b9 <+89>:	xor    %fs:0x28,%rax
+   0x00005555555557c2 <+98>:	jne    0x5555555557d0 <phase_4+112>
+   0x00005555555557c4 <+100>:	add    $0x18,%rsp
+   0x00005555555557c8 <+104>:	retq   
+--Type <RET> for more, q to quit, c to continue without paging--<RET>
+   0x00005555555557c9 <+105>:	callq  0x555555555c9e <explode_bomb>
+   0x00005555555557ce <+110>:	jmp    0x5555555557b4 <phase_4+84>
+   0x00005555555557d0 <+112>:	callq  0x555555555220 <__stack_chk_fail@plt>
+End of assembler dump.
+(gdb) disas func4
+Dump of assembler code for function func4:
+   0x0000555555555725 <+0>:	endbr64 
+   0x0000555555555729 <+4>:	mov    $0x0,%eax
+   0x000055555555572e <+9>:	test   %edi,%edi
+   0x0000555555555730 <+11>:	jle    0x55555555575f <func4+58>
+   0x0000555555555732 <+13>:	push   %r12
+   0x0000555555555734 <+15>:	push   %rbp
+   0x0000555555555735 <+16>:	push   %rbx
+   0x0000555555555736 <+17>:	mov    %edi,%ebx
+   0x0000555555555738 <+19>:	mov    %esi,%ebp
+   0x000055555555573a <+21>:	mov    %esi,%eax
+   0x000055555555573c <+23>:	cmp    $0x1,%edi
+   0x000055555555573f <+26>:	je     0x55555555575a <func4+53>
+   0x0000555555555741 <+28>:	lea    -0x1(%rdi),%edi
+   0x0000555555555744 <+31>:	callq  0x555555555725 <func4>
+   0x0000555555555749 <+36>:	lea    (%rax,%rbp,1),%r12d
+   0x000055555555574d <+40>:	lea    -0x2(%rbx),%edi
+   0x0000555555555750 <+43>:	mov    %ebp,%esi
+   0x0000555555555752 <+45>:	callq  0x555555555725 <func4>
+   0x0000555555555757 <+50>:	add    %r12d,%eax
+   0x000055555555575a <+53>:	pop    %rbx
+   0x000055555555575b <+54>:	pop    %rbp
+   0x000055555555575c <+55>:	pop    %r12
+   0x000055555555575e <+57>:	retq   
+   0x000055555555575f <+58>:	retq   
+End of assembler dump.
+(gdb) stepi
+0x0000555555555764 in phase_4 ()
+(gdb) stepi
+0x0000555555555768 in phase_4 ()
+(gdb) stepi
+0x0000555555555771 in phase_4 ()
+(gdb) x/d $rax
+0x8acb634a82295b00:	Cannot access memory at address 0x8acb634a82295b00
+(gdb) stepi 5
+0x0000555555555787 in phase_4 ()
+(gdb) stepi
+0x00005555555552c0 in __isoc99_sscanf@plt ()
+(gdb) finish
+Run till exit from #0  0x00005555555552c0 in __isoc99_sscanf@plt ()
+0x000055555555578c in phase_4 ()
+(gdb) stepi
+0x000055555555578f in phase_4 ()
+(gdb) x/d $eax
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x0000555555555791 in phase_4 ()
+(gdb) stepi
+0x0000555555555794 in phase_4 ()
+(gdb) x/d $rsp
+0x7fffffffdf60:	9
+(gdb) stepi
+0x0000555555555797 in phase_4 ()
+(gdb) x/d $eax
+0x7:	Cannot access memory at address 0x7
+(gdb) stepi
+0x000055555555579a in phase_4 ()
+(gdb) stepi
+0x000055555555579c in phase_4 ()
+(gdb) x/d $rsp
+0x7fffffffdf60:	9
+(gdb) x/d $rsp+0x4
+0x7fffffffdf64:	2
+(gdb) x/d $rsp+0x8
+0x7fffffffdf68:	-2111218944
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/brayton/bomb28/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+For NASA, space is still a high priority.
+Phase 1 defused. How about the next one?
+0 1 1 2 3 5
+That's number 2.  Keep going!
+4 0
+Halfway there!
+2 4
+
+Breakpoint 1, 0x0000555555555760 in phase_4 ()
+(gdb) stepi 8
+0x0000555555555787 in phase_4 ()
+(gdb) stepi
+0x00005555555552c0 in __isoc99_sscanf@plt ()
+(gdb) finish
+Run till exit from #0  0x00005555555552c0 in __isoc99_sscanf@plt ()
+0x000055555555578c in phase_4 ()
+(gdb) stepi
+0x000055555555578f in phase_4 ()
+(gdb) stepi
+0x0000555555555791 in phase_4 ()
+(gdb) stepi
+0x0000555555555794 in phase_4 ()
+(gdb) x/d $rsp
+0x7fffffffdf60:	4
+(gdb) stepi
+0x0000555555555797 in phase_4 ()
+(gdb) stepi
+0x000055555555579a in phase_4 ()
+(gdb) stepi
+0x00005555555557a1 in phase_4 ()
+(gdb) stepi
+0x00005555555557a4 in phase_4 ()
+(gdb) x/d $rsp
+0x7fffffffdf60:	4
+(gdb) x/d $esi
+0x4:	Cannot access memory at address 0x4
+(gdb) x/d esi
+No symbol "esi" in current context.
+(gdb) stepi
+0x00005555555557a9 in phase_4 ()
+(gdb) x/d $edi
+0x9:	Cannot access memory at address 0x9
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi
+0x0000555555555729 in func4 ()
+(gdb) disas func4
+Dump of assembler code for function func4:
+   0x0000555555555725 <+0>:	endbr64 
+=> 0x0000555555555729 <+4>:	mov    $0x0,%eax
+   0x000055555555572e <+9>:	test   %edi,%edi
+   0x0000555555555730 <+11>:	jle    0x55555555575f <func4+58>
+   0x0000555555555732 <+13>:	push   %r12
+   0x0000555555555734 <+15>:	push   %rbp
+   0x0000555555555735 <+16>:	push   %rbx
+   0x0000555555555736 <+17>:	mov    %edi,%ebx
+   0x0000555555555738 <+19>:	mov    %esi,%ebp
+   0x000055555555573a <+21>:	mov    %esi,%eax
+   0x000055555555573c <+23>:	cmp    $0x1,%edi
+   0x000055555555573f <+26>:	je     0x55555555575a <func4+53>
+   0x0000555555555741 <+28>:	lea    -0x1(%rdi),%edi
+   0x0000555555555744 <+31>:	callq  0x555555555725 <func4>
+   0x0000555555555749 <+36>:	lea    (%rax,%rbp,1),%r12d
+   0x000055555555574d <+40>:	lea    -0x2(%rbx),%edi
+   0x0000555555555750 <+43>:	mov    %ebp,%esi
+   0x0000555555555752 <+45>:	callq  0x555555555725 <func4>
+   0x0000555555555757 <+50>:	add    %r12d,%eax
+   0x000055555555575a <+53>:	pop    %rbx
+   0x000055555555575b <+54>:	pop    %rbp
+   0x000055555555575c <+55>:	pop    %r12
+   0x000055555555575e <+57>:	retq   
+   0x000055555555575f <+58>:	retq   
+End of assembler dump.
+(gdb) stepi
+0x000055555555572e in func4 ()
+(gdb) x/d $eax
+0x0:	Cannot access memory at address 0x0
+(gdb) stepi
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi
+0x0000555555555734 in func4 ()
+(gdb) x/d $r12
+0x555555555360 <_start>:	-98693133
+(gdb) stepi
+0x0000555555555735 in func4 ()
+(gdb) stepi
+0x0000555555555736 in func4 ()
+(gdb) stepi
+0x0000555555555738 in func4 ()
+(gdb) x/d $ebx
+0x9:	Cannot access memory at address 0x9
+(gdb) stepi 2
+0x000055555555573c in func4 ()
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x0000555555555741 in func4 ()
+(gdb) stepi
+0x0000555555555744 in func4 ()
+(gdb) x/d $edi
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi
+0x0000555555555729 in func4 ()
+(gdb) stepi
+0x000055555555572e in func4 ()
+(gdb) stepi
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) x/d $ebx
+0x8:	Cannot access memory at address 0x8
+(gdb) x/d $ebp
+0x4:	Cannot access memory at address 0x4
+(gdb) x/d $eax
+0x4:	Cannot access memory at address 0x4
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x0000555555555741 in func4 ()
+(gdb) stepi
+0x0000555555555744 in func4 ()
+(gdb) x/d $edi
+0x7:	Cannot access memory at address 0x7
+(gdb) stepi 8
+0x0000555555555736 in func4 ()
+(gdb) stepi 8
+0x0000555555555729 in func4 ()
+(gdb) stepi 4
+0x0000555555555734 in func4 ()
+(gdb) stepi 7
+0x0000555555555741 in func4 ()
+(gdb) stepi
+0x0000555555555744 in func4 ()
+(gdb) x/d $edi
+0x5:	Cannot access memory at address 0x5
+(gdb) stepi 20
+0x0000555555555734 in func4 ()
+(gdb) stepi 6
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x0000555555555741 in func4 ()
+(gdb) stepi
+0x0000555555555744 in func4 ()
+(gdb) x/d $edi
+0x3:	Cannot access memory at address 0x3
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 13
+0x0000555555555744 in func4 ()
+(gdb) x/d $edi
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 8
+0x0000555555555738 in func4 ()
+(gdb) stepi 3
+0x000055555555573f in func4 ()
+(gdb) x/d $edi
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x0000555555555741 in func4 ()
+(gdb) stepi
+0x0000555555555744 in func4 ()
+(gdb) x/d $edi
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 7
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi
+0x000055555555574d in func4 ()
+(gdb) x/d $r12d
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555750 in func4 ()
+(gdb) x/d $edi
+0x0:	Cannot access memory at address 0x0
+(gdb) x/d $rbx
+0x2:	Cannot access memory at address 0x2
+(gdb) x/d $ebx
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x0000555555555752 in func4 ()
+(gdb) x/d $esi
+0x4:	Cannot access memory at address 0x4
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi
+0x0000555555555729 in func4 ()
+(gdb) stepi
+0x000055555555572e in func4 ()
+(gdb) disas func4
+Dump of assembler code for function func4:
+   0x0000555555555725 <+0>:	endbr64 
+   0x0000555555555729 <+4>:	mov    $0x0,%eax
+=> 0x000055555555572e <+9>:	test   %edi,%edi
+   0x0000555555555730 <+11>:	jle    0x55555555575f <func4+58>
+   0x0000555555555732 <+13>:	push   %r12
+   0x0000555555555734 <+15>:	push   %rbp
+   0x0000555555555735 <+16>:	push   %rbx
+   0x0000555555555736 <+17>:	mov    %edi,%ebx
+   0x0000555555555738 <+19>:	mov    %esi,%ebp
+   0x000055555555573a <+21>:	mov    %esi,%eax
+   0x000055555555573c <+23>:	cmp    $0x1,%edi
+   0x000055555555573f <+26>:	je     0x55555555575a <func4+53>
+   0x0000555555555741 <+28>:	lea    -0x1(%rdi),%edi
+   0x0000555555555744 <+31>:	callq  0x555555555725 <func4>
+   0x0000555555555749 <+36>:	lea    (%rax,%rbp,1),%r12d
+   0x000055555555574d <+40>:	lea    -0x2(%rbx),%edi
+   0x0000555555555750 <+43>:	mov    %ebp,%esi
+   0x0000555555555752 <+45>:	callq  0x555555555725 <func4>
+   0x0000555555555757 <+50>:	add    %r12d,%eax
+   0x000055555555575a <+53>:	pop    %rbx
+   0x000055555555575b <+54>:	pop    %rbp
+   0x000055555555575c <+55>:	pop    %r12
+   0x000055555555575e <+57>:	retq   
+   0x000055555555575f <+58>:	retq   
+End of assembler dump.
+(gdb) stepi
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x000055555555575f in func4 ()
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) x/d $eax
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x000055555555575b in func4 ()
+(gdb) stepi 2
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi
+0x000055555555574d in func4 ()
+(gdb) x/d $r12d
+0xc:	Cannot access memory at address 0xc
+(gdb) stepi
+0x0000555555555750 in func4 ()
+(gdb) x/d $edi
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x0000555555555752 in func4 ()
+(gdb) x/d $esi
+0x4:	Cannot access memory at address 0x4
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi
+0x0000555555555729 in func4 ()
+(gdb) stepi
+0x000055555555572e in func4 ()
+(gdb) stepi
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) x/d $ebx
+0x1:	Cannot access memory at address 0x1
+(gdb) x/d $ebp
+0x4:	Cannot access memory at address 0x4
+(gdb) x/d $eax
+0x4:	Cannot access memory at address 0x4
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) x/d $eax
+0x10:	Cannot access memory at address 0x10
+(gdb) stepi
+0x000055555555575b in func4 ()
+(gdb) stepi 2
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi
+0x000055555555574d in func4 ()
+(gdb) x/d $r12d
+0x14:	Cannot access memory at address 0x14
+(gdb) stepi
+0x0000555555555750 in func4 ()
+(gdb) x/d $edi
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x0000555555555752 in func4 ()
+(gdb) x/d $esi
+0x4:	Cannot access memory at address 0x4
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) disas func4
+Dump of assembler code for function func4:
+=> 0x0000555555555725 <+0>:	endbr64 
+   0x0000555555555729 <+4>:	mov    $0x0,%eax
+   0x000055555555572e <+9>:	test   %edi,%edi
+   0x0000555555555730 <+11>:	jle    0x55555555575f <func4+58>
+   0x0000555555555732 <+13>:	push   %r12
+   0x0000555555555734 <+15>:	push   %rbp
+   0x0000555555555735 <+16>:	push   %rbx
+   0x0000555555555736 <+17>:	mov    %edi,%ebx
+   0x0000555555555738 <+19>:	mov    %esi,%ebp
+   0x000055555555573a <+21>:	mov    %esi,%eax
+   0x000055555555573c <+23>:	cmp    $0x1,%edi
+   0x000055555555573f <+26>:	je     0x55555555575a <func4+53>
+   0x0000555555555741 <+28>:	lea    -0x1(%rdi),%edi
+   0x0000555555555744 <+31>:	callq  0x555555555725 <func4>
+   0x0000555555555749 <+36>:	lea    (%rax,%rbp,1),%r12d
+   0x000055555555574d <+40>:	lea    -0x2(%rbx),%edi
+   0x0000555555555750 <+43>:	mov    %ebp,%esi
+   0x0000555555555752 <+45>:	callq  0x555555555725 <func4>
+   0x0000555555555757 <+50>:	add    %r12d,%eax
+   0x000055555555575a <+53>:	pop    %rbx
+   0x000055555555575b <+54>:	pop    %rbp
+   0x000055555555575c <+55>:	pop    %r12
+   0x000055555555575e <+57>:	retq   
+   0x000055555555575f <+58>:	retq   
+End of assembler dump.
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) x/d $ebx
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x0000555555555741 in func4 ()
+(gdb) stepi
+0x0000555555555744 in func4 ()
+(gdb) x/d $edi
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) x/d $ebx
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi
+0x000055555555574d in func4 ()
+(gdb) x/d $r12d
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555750 in func4 ()
+(gdb) x/d $edi
+0x0:	Cannot access memory at address 0x0
+(gdb) stepi
+0x0000555555555752 in func4 ()
+(gdb) x/d $esi
+0x4:	Cannot access memory at address 0x4
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x000055555555575f in func4 ()
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) x/d $eax
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi 4
+0x0000555555555757 in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) x/d $eax
+0x1c:	Cannot access memory at address 0x1c
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi
+0x000055555555574d in func4 ()
+(gdb) x/d $r12d
+0x20:	Cannot access memory at address 0x20
+(gdb) stepi
+0x0000555555555750 in func4 ()
+(gdb) x/d $edi
+0x3:	Cannot access memory at address 0x3
+(gdb) stepi
+0x0000555555555752 in func4 ()
+(gdb) x/d $esi
+0x4:	Cannot access memory at address 0x4
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) x/d $ebx
+0x3:	Cannot access memory at address 0x3
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x0000555555555741 in func4 ()
+(gdb) stepi
+0x0000555555555744 in func4 ()
+(gdb) x/d $edi
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) x/d $ebx
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) disas func4
+Dump of assembler code for function func4:
+   0x0000555555555725 <+0>:	endbr64 
+   0x0000555555555729 <+4>:	mov    $0x0,%eax
+   0x000055555555572e <+9>:	test   %edi,%edi
+   0x0000555555555730 <+11>:	jle    0x55555555575f <func4+58>
+   0x0000555555555732 <+13>:	push   %r12
+   0x0000555555555734 <+15>:	push   %rbp
+   0x0000555555555735 <+16>:	push   %rbx
+   0x0000555555555736 <+17>:	mov    %edi,%ebx
+   0x0000555555555738 <+19>:	mov    %esi,%ebp
+   0x000055555555573a <+21>:	mov    %esi,%eax
+   0x000055555555573c <+23>:	cmp    $0x1,%edi
+=> 0x000055555555573f <+26>:	je     0x55555555575a <func4+53>
+   0x0000555555555741 <+28>:	lea    -0x1(%rdi),%edi
+   0x0000555555555744 <+31>:	callq  0x555555555725 <func4>
+   0x0000555555555749 <+36>:	lea    (%rax,%rbp,1),%r12d
+   0x000055555555574d <+40>:	lea    -0x2(%rbx),%edi
+   0x0000555555555750 <+43>:	mov    %ebp,%esi
+   0x0000555555555752 <+45>:	callq  0x555555555725 <func4>
+   0x0000555555555757 <+50>:	add    %r12d,%eax
+   0x000055555555575a <+53>:	pop    %rbx
+   0x000055555555575b <+54>:	pop    %rbp
+   0x000055555555575c <+55>:	pop    %r12
+   0x000055555555575e <+57>:	retq   
+   0x000055555555575f <+58>:	retq   
+End of assembler dump.
+(gdb) stepi
+0x0000555555555741 in func4 ()
+(gdb) stepi
+0x0000555555555744 in func4 ()
+(gdb) x/d $edi
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) x/d $ebx
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi
+0x000055555555574d in func4 ()
+(gdb) x/d $r12d
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555750 in func4 ()
+(gdb) x/d $edi
+0x0:	Cannot access memory at address 0x0
+(gdb) stepi
+0x0000555555555752 in func4 ()
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x000055555555575f in func4 ()
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) x/d $eax
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi
+0x000055555555574d in func4 ()
+(gdb) x/d $r12d
+0xc:	Cannot access memory at address 0xc
+(gdb) stepi
+0x0000555555555750 in func4 ()
+(gdb) x/d $edi
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x0000555555555752 in func4 ()
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) x/d $ebx
+0x1:	Cannot access memory at address 0x1
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) x/d $eax
+0x10:	Cannot access memory at address 0x10
+(gdb) stepi
+0x000055555555575b in func4 ()
+(gdb) stepi 3
+0x0000555555555757 in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) x/d $eax
+0x30:	Cannot access memory at address 0x30
+(gdb) x/d $r12d
+0x20:	Cannot access memory at address 0x20
+(gdb) stepi
+0x000055555555575b in func4 ()
+(gdb) stepi 3
+0x0000555555555749 in func4 ()
+(gdb) stepi
+0x000055555555574d in func4 ()
+(gdb) x/d $r12d
+0x34:	Cannot access memory at address 0x34
+(gdb) stepi
+0x0000555555555750 in func4 ()
+(gdb) stepi
+0x0000555555555752 in func4 ()
+(gdb) x/d $edi
+0x4:	Cannot access memory at address 0x4
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x0000555555555741 in func4 ()
+(gdb) stepi
+0x0000555555555744 in func4 ()
+(gdb) x/d $edi
+0x3:	Cannot access memory at address 0x3
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 3
+0x0000555555555744 in func4 ()
+(gdb) x/d $edi
+0x2:	Cannot access memory at address 0x2
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 3
+0x0000555555555744 in func4 ()
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) disas func4
+Dump of assembler code for function func4:
+   0x0000555555555725 <+0>:	endbr64 
+   0x0000555555555729 <+4>:	mov    $0x0,%eax
+   0x000055555555572e <+9>:	test   %edi,%edi
+   0x0000555555555730 <+11>:	jle    0x55555555575f <func4+58>
+   0x0000555555555732 <+13>:	push   %r12
+   0x0000555555555734 <+15>:	push   %rbp
+   0x0000555555555735 <+16>:	push   %rbx
+   0x0000555555555736 <+17>:	mov    %edi,%ebx
+   0x0000555555555738 <+19>:	mov    %esi,%ebp
+   0x000055555555573a <+21>:	mov    %esi,%eax
+   0x000055555555573c <+23>:	cmp    $0x1,%edi
+=> 0x000055555555573f <+26>:	je     0x55555555575a <func4+53>
+   0x0000555555555741 <+28>:	lea    -0x1(%rdi),%edi
+   0x0000555555555744 <+31>:	callq  0x555555555725 <func4>
+   0x0000555555555749 <+36>:	lea    (%rax,%rbp,1),%r12d
+   0x000055555555574d <+40>:	lea    -0x2(%rbx),%edi
+   0x0000555555555750 <+43>:	mov    %ebp,%esi
+   0x0000555555555752 <+45>:	callq  0x555555555725 <func4>
+   0x0000555555555757 <+50>:	add    %r12d,%eax
+   0x000055555555575a <+53>:	pop    %rbx
+   0x000055555555575b <+54>:	pop    %rbp
+   0x000055555555575c <+55>:	pop    %r12
+   0x000055555555575e <+57>:	retq   
+   0x000055555555575f <+58>:	retq   
+End of assembler dump.
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi
+0x000055555555574d in func4 ()
+(gdb) x/d %r12d
+A syntax error in expression, near `%r12d'.
+(gdb) x/d $r12d
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555750 in func4 ()
+(gdb) stepi
+0x0000555555555752 in func4 ()
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x000055555555575f in func4 ()
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) x/d $eax
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi
+0x000055555555574d in func4 ()
+(gdb) x/d $r12d
+0xc:	Cannot access memory at address 0xc
+(gdb) stepi 3
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) x/d $eax
+0x10:	Cannot access memory at address 0x10
+(gdb) stepi 2
+0x000055555555575c in func4 ()
+(gdb) stepi
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi
+0x000055555555574d in func4 ()
+(gdb) x/d $r12d
+0x14:	Cannot access memory at address 0x14
+(gdb) stepi 2
+0x0000555555555752 in func4 ()
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x0000555555555741 in func4 ()
+(gdb) stepi 2
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi 3
+0x0000555555555752 in func4 ()
+(gdb) x/d $r12d
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x000055555555575f in func4 ()
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi 4
+0x000055555555575e in func4 ()
+(gdb) x/d $eax
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi 4
+0x000055555555575e in func4 ()
+(gdb) x/d $eax
+0x1c:	Cannot access memory at address 0x1c
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi 4
+0x000055555555575e in func4 ()
+(gdb) x/d $eax
+0x50:	Cannot access memory at address 0x50
+(gdb) x/d $r12d
+0x55555360:	Cannot access memory at address 0x55555360
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi 3
+0x0000555555555752 in func4 ()
+(gdb) x/d $r12d
+0x54:	Cannot access memory at address 0x54
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi
+0x000055555555573f in func4 ()
+(gdb) disas func4
+Dump of assembler code for function func4:
+   0x0000555555555725 <+0>:	endbr64 
+   0x0000555555555729 <+4>:	mov    $0x0,%eax
+   0x000055555555572e <+9>:	test   %edi,%edi
+   0x0000555555555730 <+11>:	jle    0x55555555575f <func4+58>
+   0x0000555555555732 <+13>:	push   %r12
+   0x0000555555555734 <+15>:	push   %rbp
+   0x0000555555555735 <+16>:	push   %rbx
+   0x0000555555555736 <+17>:	mov    %edi,%ebx
+   0x0000555555555738 <+19>:	mov    %esi,%ebp
+   0x000055555555573a <+21>:	mov    %esi,%eax
+   0x000055555555573c <+23>:	cmp    $0x1,%edi
+=> 0x000055555555573f <+26>:	je     0x55555555575a <func4+53>
+   0x0000555555555741 <+28>:	lea    -0x1(%rdi),%edi
+   0x0000555555555744 <+31>:	callq  0x555555555725 <func4>
+   0x0000555555555749 <+36>:	lea    (%rax,%rbp,1),%r12d
+   0x000055555555574d <+40>:	lea    -0x2(%rbx),%edi
+   0x0000555555555750 <+43>:	mov    %ebp,%esi
+   0x0000555555555752 <+45>:	callq  0x555555555725 <func4>
+   0x0000555555555757 <+50>:	add    %r12d,%eax
+   0x000055555555575a <+53>:	pop    %rbx
+   0x000055555555575b <+54>:	pop    %rbp
+   0x000055555555575c <+55>:	pop    %r12
+   0x000055555555575e <+57>:	retq   
+   0x000055555555575f <+58>:	retq   
+End of assembler dump.
+(gdb) stepi
+0x0000555555555741 in func4 ()
+(gdb) stepi 2
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi 3
+0x0000555555555735 in func4 ()
+(gdb) stepi 5
+0x000055555555573f in func4 ()
+(gdb) stepi
+0x0000555555555741 in func4 ()
+(gdb) stepi
+0x0000555555555744 in func4 ()
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 2
+0x0000555555555741 in func4 ()
+(gdb) stepi 2
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi 
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 2
+0x0000555555555741 in func4 ()
+(gdb) stepi 2
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 2
+0x000055555555575a in func4 ()
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi 3
+0x0000555555555752 in func4 ()
+(gdb) x/d $r12d
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x000055555555575f in func4 ()
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi
+0x000055555555575a in func4 ()
+(gdb) x/d $eax
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi 3
+0x000055555555575e in func4 ()
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi 3
+0x0000555555555752 in func4 ()
+(gdb) x/d $r12d
+0xc:	Cannot access memory at address 0xc
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 2
+0x000055555555575a in func4 ()
+(gdb) stepi 4
+0x0000555555555757 in func4 ()
+(gdb) stepi 4
+0x000055555555575e in func4 ()
+(gdb) x/d $eax
+0x10:	Cannot access memory at address 0x10
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi 3
+0x0000555555555752 in func4 ()
+(gdb) x/d $r12d
+0x14:	Cannot access memory at address 0x14
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 2
+0x0000555555555741 in func4 ()
+(gdb) stepi 2
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 2
+0x000055555555575a in func4 ()
+(gdb) stepi 4
+0x0000555555555749 in func4 ()
+(gdb) stepi 3
+0x0000555555555752 in func4 ()
+(gdb) x/d $r12d
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x000055555555575f in func4 ()
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) disas func4
+Dump of assembler code for function func4:
+   0x0000555555555725 <+0>:	endbr64 
+   0x0000555555555729 <+4>:	mov    $0x0,%eax
+   0x000055555555572e <+9>:	test   %edi,%edi
+   0x0000555555555730 <+11>:	jle    0x55555555575f <func4+58>
+   0x0000555555555732 <+13>:	push   %r12
+   0x0000555555555734 <+15>:	push   %rbp
+   0x0000555555555735 <+16>:	push   %rbx
+   0x0000555555555736 <+17>:	mov    %edi,%ebx
+   0x0000555555555738 <+19>:	mov    %esi,%ebp
+   0x000055555555573a <+21>:	mov    %esi,%eax
+   0x000055555555573c <+23>:	cmp    $0x1,%edi
+   0x000055555555573f <+26>:	je     0x55555555575a <func4+53>
+   0x0000555555555741 <+28>:	lea    -0x1(%rdi),%edi
+   0x0000555555555744 <+31>:	callq  0x555555555725 <func4>
+   0x0000555555555749 <+36>:	lea    (%rax,%rbp,1),%r12d
+   0x000055555555574d <+40>:	lea    -0x2(%rbx),%edi
+   0x0000555555555750 <+43>:	mov    %ebp,%esi
+   0x0000555555555752 <+45>:	callq  0x555555555725 <func4>
+=> 0x0000555555555757 <+50>:	add    %r12d,%eax
+   0x000055555555575a <+53>:	pop    %rbx
+   0x000055555555575b <+54>:	pop    %rbp
+   0x000055555555575c <+55>:	pop    %r12
+   0x000055555555575e <+57>:	retq   
+   0x000055555555575f <+58>:	retq   
+End of assembler dump.
+(gdb) stepi 4
+0x000055555555575e in func4 ()
+(gdb) x/d $eax
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi 4
+0x000055555555575e in func4 ()
+(gdb) x/d $eax
+0x1c:	Cannot access memory at address 0x1c
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi 3
+0x0000555555555752 in func4 ()
+(gdb) x/d $r12d
+0x20:	Cannot access memory at address 0x20
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 2
+0x0000555555555741 in func4 ()
+(gdb) stepi 2
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 2
+0x0000555555555741 in func4 ()
+(gdb) stepi 2
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 6
+0x000055555555573c in func4 ()
+(gdb) stepi 2
+0x000055555555575a in func4 ()
+(gdb) stepi 4
+0x0000555555555749 in func4 ()
+(gdb) stepi 3
+0x0000555555555752 in func4 ()
+(gdb) x/d $r12d
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x000055555555575f in func4 ()
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi 4
+0x000055555555575e in func4 ()
+(gdb) x/d $eax
+0x8:	Cannot access memory at address 0x8
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi 3
+0x0000555555555752 in func4 ()
+(gdb) x/d $r12d
+0xc:	Cannot access memory at address 0xc
+(gdb) stepi
+0x0000555555555725 in func4 ()
+(gdb) stepi 3
+0x0000555555555730 in func4 ()
+(gdb) stepi
+0x0000555555555732 in func4 ()
+(gdb) stepi 8
+0x000055555555575a in func4 ()
+(gdb) stepi 4
+0x0000555555555757 in func4 ()
+(gdb) stepi 4
+0x000055555555575e in func4 ()
+(gdb) x/d $eax
+0x10:	Cannot access memory at address 0x10
+(gdb) stepi 
+0x0000555555555757 in func4 ()
+(gdb) stepi 4
+0x000055555555575e in func4 ()
+(gdb) x/d $eax
+0x30:	Cannot access memory at address 0x30
+(gdb) stepi
+0x0000555555555757 in func4 ()
+(gdb) stepi 4
+0x000055555555575e in func4 ()
+(gdb) x/d $eax
+0x84:	Cannot access memory at address 0x84
+(gdb) stepi
+0x0000555555555749 in func4 ()
+(gdb) stepi 3
+0x0000555555555752 in func4 ()
+(gdb) x/d $r12d
+0x88:	Cannot access memory at address 0x88
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 40911] will be killed.
+
+Quit anyway? (y or n) y
+brayton@brayton-VirtualBox:~/bomb28$ gdb
+GNU gdb (Ubuntu 9.1-0ubuntu1) 9.1
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+(gdb) file bomb
+Reading symbols from bomb...
+(gdb) run
+Starting program: /home/brayton/bomb28/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+For NASA, space is still a high priority.
+Phase 1 defused. How about the next one?
+0 1 1 2 3 5
+That's number 2.  Keep going!
+4 0
+Halfway there!
+572 4
+
+BOOM!!!
+The bomb has blown up.
+[Inferior 1 (process 41268) exited with code 010]
+(gdb) run
+Starting program: /home/brayton/bomb28/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+For NASA, space is still a high priority.
+Phase 1 defused. How about the next one?
+0 1 1 2 3 5
+That's number 2.  Keep going!
+4 0
+Halfway there!
+4 572
+
+BOOM!!!
+The bomb has blown up.
+[Inferior 1 (process 41274) exited with code 010]
+(gdb) run
+Starting program: /home/brayton/bomb28/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+For NASA, space is still a high priority.
+Phase 1 defused. How about the next one?
+0 1 1 2 3 5
+That's number 2.  Keep going!
+4 0
+Halfway there!
+352 4
+So you got that one.  Try this one.
