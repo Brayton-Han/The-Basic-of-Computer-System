@@ -1,8 +1,8 @@
-# The-basis-of-computer-system
-1. Here contains the lesson's labs files.
-2. stage 1:
+# The Basic of Computer System
+1. Course labs
+2. stage 1 (2020 fall):
 - datalab
 - bomblab
 - attacklab/bufferlab
 - archlab
-3. stage 2:
+3. stage 2 (2021 spring):
